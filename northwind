@@ -1,0 +1,102 @@
+	/* 1,Create a query to display the first name and last name of all employees from the employees table.*/
+SELECT
+    CustomerName
+FROM
+    Customers;
+    /* 2. Write a query to display all information in the shippers table*/
+SELECT
+    *
+FROM
+    Shippers;
+    /* 3. The sales team needs a list of all our products with only the details most relevant to making the sale. Write a query to accomplish this. Include a comment above the query that briefly explains why you believe the columns you chose were most relevant.*/
+SELECT
+    ProductName,
+    unit,
+    price
+FROM
+    Products;
+    /* 4. Write a query to display the product name, price, and price with a 30% discount from the products table.*/
+SELECT
+    ProductName,
+    Price,
+    Price * 0.7
+FROM
+    Products;
+    /* 5. Northwind is analyzing their pricing structure and needs to see how each of our products would be priced if we applied a flat $2 increase and then a 12% markdown (decrease). Write a query to accomplish this.*/
+SELECT
+    ProductName,
+    Price,
+    (Price +2) * .88
+FROM
+    Products;
+    /* 6. Re-write your query for question #5 using clear column names. Include the following additional columns as well: Flat Increase Amount with a fixed value of “12%” Markdown Amount with a fixed value of “$2” */
+SELECT
+    ProductName,
+    Price,
+    (Price +2) * .88 AS "Discounted Price",
+    "12%" AS "Flat Increase Amount with a fixed value of",
+    "$2" AS "Markdown Amount with a fixed value of"
+FROM
+    Products;
+    /* 7. Write a query to retrieve all products from the products table where the price is between 15 and 25.*/
+SELECT
+    ProductName,
+    price
+FROM
+    Products
+WHERE
+    Price BETWEEN 155 AND 25;
+    /* 8. Create a query to list all products from the products table that have ‘chef’ in their product name.*/
+SELECT
+    *
+FROM
+    Products
+WHERE
+    ProductName LIKE '%chef%';
+    /* 9. Write a SELECT statement to display all customers from the customers table that are located in either Germany, France, or Spain.*/
+SELECT
+    CustomerName,
+    Country
+FROM
+    Customers
+WHERE
+    Country IN('France', 'Germany', 'Spain');
+    /* 10. The marketing team is planning a promotion and needs to see relevant information on Northwind’s affordable seafood and dairy products. Write a query to accomplish this.*/
+SELECT
+    *
+FROM
+    Products
+WHERE
+    Price < 30 AND CategoryID IN('4', '8');
+    /* 11. Write a query to retrieve all employee names from the employee table, ordered from youngest to oldest.*/
+SELECT
+    *
+FROM
+    Employees
+ORDER BY
+    YEAR(BirthDate)
+DESC
+    ;
+    /* 12. Write a query to show all customers from the customers table, sorted first by their country in reverse alphabetical order and the customer’s name in alphabetical order.*/
+SELECT
+    CustomerName,
+    Country
+FROM
+    Customers
+ORDER BY
+    CustomerName ASC,
+    Country
+DESC
+    ;
+    /* 13. Management is conducting a performance review of employees and wants to see a comprehensive breakdown of all orders. They need to see which employees handled each order (you can use the EmployeeID in the orders table, it shows who facilitated the order) and the corresponding order dates. They’ve emphasized the importance of seeing each employee’s sales history chronologically, with their most recent sales appearing first. Write a query that provides this information in a format that allows management to easily review each employee’s performance over time.*/
+SELECT
+    EmployeeId,
+    OrderDate,
+    Quantity
+FROM
+    Orders,
+    OrderDetails
+ORDER BY
+    OrderDate
+DESC
+    ;
